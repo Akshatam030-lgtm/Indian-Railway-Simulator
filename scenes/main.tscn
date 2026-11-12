@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1"]
+
+[sub_resource type="BoxMesh" id="TrainBody"]
+size = Vector3(2.8, 2.5, 15.0)
+
+[sub_resource type="BoxMesh" id="TrackMesh"]
+size = Vector3(7.0, 0.3, 120.0)
+
+[sub_resource type="BoxMesh" id="RailMesh"]
+size = Vector3(0.2, 0.25, 120.0)
+
+[node name="IndianRailwaySimulator" type="Node3D"]
+script = ExtResource("1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-45, -30, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(0, 6, 18)
+rotation_degrees = Vector3(-15, 0, 0)
+current = true
+
+[node name="Track" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Track"]
+position = Vector3(0, -0.5, -40)
+mesh = SubResource("TrackMesh")
+
+[node name="LeftRail" type="MeshInstance3D" parent="Track"]
+position = Vector3(-0.9, 0, -40)
+mesh = SubResource("RailMesh")
+
+[node name="RightRail" type="MeshInstance3D" parent="Track"]
+position = Vector3(0.9, 0, -40)
+mesh = SubResource("RailMesh")
+
+[node name="Train" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Train"]
+position = Vector3(0, 1.5, 0)
+mesh = SubResource("TrainBody")
